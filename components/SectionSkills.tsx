@@ -1,6 +1,5 @@
-import { DecoImage } from "@/components/DecoImage";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { skillGroups, skillsVisual } from "@/lib/content";
+import { skillGroups } from "@/lib/content";
 
 export function SectionSkills() {
   return (
@@ -20,17 +19,6 @@ export function SectionSkills() {
           <p className="mt-3 max-w-2xl text-lg font-medium text-fuchsia-200/85 [text-shadow:0_0_14px_rgba(255,75,213,0.28)]">
             Stack que uso en producción y en proyectos académicos.
           </p>
-        </ScrollReveal>
-
-        <ScrollReveal className="mt-8" delayMs={60}>
-          <div className="neon-edge relative h-40 overflow-hidden rounded-2xl border border-cyan-500/25 bg-slate-950/60 sm:h-48">
-            <DecoImage
-              src={skillsVisual.bannerSrc}
-              alt={skillsVisual.bannerAlt}
-              fit="cover"
-              className="opacity-95"
-            />
-          </div>
         </ScrollReveal>
 
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

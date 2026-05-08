@@ -25,7 +25,7 @@ export function SectionProjects() {
           {projects.map((project, i) => (
             <li key={project.name}>
               <ScrollReveal delayMs={70 + i * 80}>
-                <article className="group neon-edge-hover flex h-full flex-col overflow-hidden rounded-2xl border border-fuchsia-500/15 bg-gradient-to-b from-slate-950/95 to-slate-950/80 shadow-[0_0_36px_rgba(180,107,255,0.08)] transition hover:border-cyan-400/30">
+                <article className="group neon-edge-hover flex h-full flex-col overflow-hidden rounded-2xl border border-fuchsia-500/15 bg-linear-to-b from-slate-950/95 to-slate-950/80 shadow-[0_0_36px_rgba(180,107,255,0.08)] transition hover:border-cyan-400/30">
                   <div className="relative aspect-video overflow-hidden border-b border-cyan-500/15 bg-[#030712]">
                     <DecoImage
                       src={project.imageSrc}
@@ -33,7 +33,7 @@ export function SectionProjects() {
                       fit="cover"
                       className="opacity-95 group-hover:scale-[1.04]"
                     />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-fuchsia-500/10" />
+                    <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-slate-950/90 via-transparent to-fuchsia-500/10" />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <p className="font-display text-[10px] font-bold uppercase tracking-[0.26em] text-fuchsia-200 [text-shadow:0_0_14px_rgba(255,75,213,0.35)]">

@@ -1,4 +1,3 @@
-import { DecoImage } from "@/components/DecoImage";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { about } from "@/lib/content";
 
@@ -22,18 +21,11 @@ export function SectionAbout() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,380px)] lg:items-start">
+        <div className="mt-12">
           <ScrollReveal delayMs={100}>
-            <article className="neon-edge-hover rounded-2xl border border-cyan-500/20 bg-slate-950/45 p-6 shadow-[inset_0_0_28px_rgba(45,226,255,0.06)] backdrop-blur sm:p-8">
+            <article className="neon-edge-hover mx-auto max-w-3xl rounded-2xl border border-cyan-500/20 bg-slate-950/45 p-6 shadow-[inset_0_0_28px_rgba(45,226,255,0.06)] backdrop-blur sm:p-8">
               <p className="text-base leading-relaxed text-slate-300">{about.summary}</p>
             </article>
-          </ScrollReveal>
-
-          <ScrollReveal className="lg:sticky lg:top-24" delayMs={80}>
-            <div className="neon-edge relative aspect-5/6 max-h-[520px] overflow-hidden rounded-2xl border border-fuchsia-500/25 bg-slate-950/70 shadow-[0_0_40px_rgba(255,75,213,0.12)]">
-              <DecoImage src={about.visualSrc} alt={about.visualAlt} />
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-slate-950/85 via-transparent to-cyan-500/10" />
-            </div>
           </ScrollReveal>
         </div>
       </div>
