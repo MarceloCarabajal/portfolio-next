@@ -81,7 +81,7 @@ export function SectionHero() {
       <div className="pointer-events-none absolute inset-0 scanlines opacity-[0.09]" aria-hidden />
 
       <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div>
+        <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
           <p className="font-display text-[11px] font-bold uppercase tracking-[0.42em] text-cyan-200 [text-shadow:0_0_20px_rgba(45,226,255,0.65)]">
             Portfolio personal
           </p>
@@ -94,10 +94,10 @@ export function SectionHero() {
           <p className="mt-4 text-lg font-semibold text-fuchsia-200 [text-shadow:0_0_18px_rgba(255,75,213,0.35)] sm:text-xl">
             {hero.subline}
           </p>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300/90 sm:text-lg">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300/90 sm:text-lg lg:max-w-xl">
             {hero.lead}
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap justify-center gap-3 lg:justify-start">
             <a
               href="#proyectos"
               className="btn-neon-primary inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition hover:scale-[1.02]"
@@ -117,9 +117,9 @@ export function SectionHero() {
             ref={frameRef}
             onMouseMove={onPortraitMove}
             onMouseLeave={onPortraitLeave}
-            className="relative aspect-square w-full max-w-[320px] sm:max-w-[360px] perspective-distant"
+            className="relative aspect-square w-full max-w-[280px] perspective-distant sm:max-w-[360px]"
           >
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/35 via-transparent to-fuchsia-500/35 blur-2xl" />
+            <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-cyan-400/35 via-transparent to-fuchsia-500/35 blur-2xl" />
             <div
               className="neon-edge relative h-full w-full overflow-hidden rounded-3xl border border-cyan-400/35 bg-slate-950/40 shadow-[0_0_60px_rgba(180,107,255,0.15)] transition-transform duration-150 ease-out will-change-transform"
               style={{
