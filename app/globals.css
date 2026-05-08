@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --neon-cyan: #2de2ff;
+  --neon-fuchsia: #ff4bd5;
+  --neon-violet: #b46bff;
+  --neon-grid: rgba(45, 226, 255, 0.14);
+  --neon-grid-2: rgba(255, 75, 213, 0.1);
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@layer utilities {
+  .font-body {
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.cosmic-bg {
+  background-color: #020617;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(180, 107, 255, 0.28), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 80% 40%, rgba(45, 226, 255, 0.12), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 10% 80%, rgba(255, 75, 213, 0.1), transparent 45%);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(var(--neon-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--neon-grid-2) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 72% 62% at 50% 38%, black, transparent);
+}
+
+.blob-move {
+  animation: blob-float 14s ease-in-out infinite;
+}
+
+.blob-move-reverse {
+  animation: blob-float 18s ease-in-out infinite reverse;
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(24px, -18px) scale(1.05);
+  }
+  66% {
+    transform: translate(-16px, 12px) scale(0.97);
+  }
+}
+
+@keyframes neon-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    filter: drop-shadow(0 0 12px rgba(45, 226, 255, 0.35));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 22px rgba(255, 75, 213, 0.45));
+  }
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.28) 2px,
+    rgba(0, 0, 0, 0.28) 3px
+  );
+  pointer-events: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(0.99);
+  filter: blur(2px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.title-neon {
+  background: linear-gradient(
+    120deg,
+    #e0f7ff 0%,
+    var(--neon-cyan) 28%,
+    #f5d0ff 58%,
+    var(--neon-fuchsia) 85%,
+    #e0f7ff 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: title-shine 9s linear infinite;
+  text-shadow: 0 0 42px rgba(45, 226, 255, 0.22);
+}
+
+@keyframes title-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.neon-edge {
+  box-shadow:
+    0 0 0 1px rgba(45, 226, 255, 0.35),
+    0 0 28px rgba(45, 226, 255, 0.18),
+    0 0 56px rgba(255, 75, 213, 0.08);
+}
+
+.neon-edge-hover:hover {
+  box-shadow:
+    0 0 0 1px rgba(45, 226, 255, 0.55),
+    0 0 36px rgba(45, 226, 255, 0.28),
+    0 0 72px rgba(180, 107, 255, 0.18);
+}
+
+.btn-neon-primary {
+  background: linear-gradient(115deg, var(--neon-cyan), var(--neon-violet) 55%, var(--neon-fuchsia));
+  color: #020617;
+  box-shadow:
+    0 0 24px rgba(45, 226, 255, 0.45),
+    0 0 48px rgba(255, 75, 213, 0.18);
+}
+
+.btn-neon-ghost {
+  border: 1px solid rgba(45, 226, 255, 0.45);
+  background: rgba(2, 6, 23, 0.55);
+  box-shadow:
+    inset 0 0 22px rgba(45, 226, 255, 0.08),
+    0 0 24px rgba(180, 107, 255, 0.12);
+}
+
+.hex-launch {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: radial-gradient(
+      circle at 30% 25%,
+      rgba(45, 226, 255, 0.55),
+      transparent 58%
+    ),
+    linear-gradient(155deg, rgba(2, 6, 23, 0.98), rgba(76, 29, 149, 0.88));
+  border: 1px solid rgba(45, 226, 255, 0.75);
+  box-shadow:
+    0 0 28px rgba(45, 226, 255, 0.45),
+    0 0 52px rgba(255, 75, 213, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-move,
+  .blob-move-reverse {
+    animation: none !important;
+  }
+
+  .title-neon {
+    animation: none !important;
+    background: linear-gradient(120deg, #e0f7ff, var(--neon-cyan), #f5d0ff);
+    background-size: 100%;
+  }
+
+  .reveal,
+  .reveal--visible {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
