@@ -62,11 +62,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  icons: {
-    icon: [{ url: "/icons/rocket-up.svg", type: "image/svg+xml" }],
-    shortcut: ["/icons/rocket-up.svg"],
-    apple: [{ url: "/icons/rocket-up.svg" }],
-  },
 };
 
 export default function RootLayout({

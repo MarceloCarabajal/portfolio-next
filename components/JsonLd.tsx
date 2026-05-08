@@ -1,4 +1,4 @@
-import { site } from "@/lib/content";
+import { contactEmail, site } from "@/lib/content";
 
 function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -12,7 +12,7 @@ export function JsonLd() {
     jobTitle: site.title,
     url: siteUrl(),
     description: site.description,
-    email: "marcelocarabajalok@gmail.com",
+    email: contactEmail,
     telephone: "+54-11-2634-7325",
     sameAs: ["https://www.linkedin.com/in/marcelo-carabajal/"],
     knowsLanguage: ["es", "en"],

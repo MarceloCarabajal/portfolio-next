@@ -67,7 +67,7 @@ export function SectionSkills() {
     <section
       id="conocimientos"
       aria-labelledby="skills-heading"
-      className="flex min-h-screen scroll-mt-24 flex-col justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
+      className="flex min-h-[100svh] scroll-mt-28 flex-col justify-center px-4 py-8 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:py-10 lg:scroll-mt-36 lg:px-8 lg:py-12"
     >
       <div className="mx-auto w-full max-w-6xl text-center">
         <ScrollReveal>

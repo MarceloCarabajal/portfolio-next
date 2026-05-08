@@ -6,7 +6,7 @@ export function SectionProjects() {
     <section
       id="proyectos"
       aria-labelledby="projects-heading"
-      className="flex min-h-screen scroll-mt-24 flex-col justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
+      className="flex min-h-[100svh] scroll-mt-28 flex-col justify-center px-4 py-8 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:py-10 lg:scroll-mt-36 lg:px-8 lg:py-12"
     >
       <div className="mx-auto w-full max-w-6xl text-center">
         <ScrollReveal>
@@ -30,8 +30,14 @@ export function SectionProjects() {
                       {project.role}
                     </p>
                     <h3 className="mt-2 text-lg font-semibold text-slate-50">{project.name}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
+                    <p className="mt-2 text-sm font-medium leading-snug text-cyan-200/85">
+                      {project.context}
+                    </p>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
                       {project.summary}
+                    </p>
+                    <p className="mt-3 border-l-2 border-fuchsia-500/35 pl-3 text-sm leading-snug text-violet-200/90">
+                      {project.impact}
                     </p>
                     <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías">
                       {project.stack.slice(0, 12).map((t) => (

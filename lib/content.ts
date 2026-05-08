@@ -10,7 +10,7 @@ export const hero = {
   headline: "Marcelo Carabajal",
   subline: "Desarrollador Full Stack · Backend & APIs",
   lead:
-    "Construyo servicios robustos y productos web con Java (Quarkus, Spring Boot), Node/TypeScript, NestJS, Next.js y C#/.NET.",
+    "Construyo servicios robustos y productos web con Java (Quarkus, Spring Boot), C#/.NET, Node/TypeScript, NestJS y Next.js.",
   /** Colocá tu foto en public/profile.jpg (recomendado 800×800+). Si no existe, se usa el SVG. */
   imageSrc: "/profile.jpg",
   imageFallback: "/profile.svg",
@@ -20,11 +20,31 @@ export const hero = {
 export const about = {
   visualSrc: "/art-about.svg",
   visualAlt: "Ilustración abstracta de perfil y sistemas",
-  summary:
-    "Desarrollador Full Stack con foco en backend y experiencia en productos empresariales. Trabajo en Grupo Hasar construyendo APIs, integraciones y evolución de sistemas con Java, Node/TypeScript, NestJS y Next.js. Complemento esta práctica con formación continua en UTN y experiencia como tutor de React.js.",
+  tagline:
+    "Backend que acompaña el negocio: APIs confiables, integraciones claras y sistemas pensados para evolucionar en producción.",
+  blocks: [
+    {
+      title: "Perfil",
+      body:
+        "Soy desarrollador Full Stack con fuerte foco en backend y trayectoria en entornos exigentes.",
+    },
+    {
+      title: "Qué hago",
+      body:
+        "Diseño y mantengo APIs, integraciones y servicios que conviven con sistemas legacy y modernos, priorizando estabilidad, trazabilidad y código mantenible.",
+    },
+    {
+      title: "Stack principal",
+      body:
+        "Java (Quarkus, Spring Boot) y C#/.NET para soluciones empresariales; Node/TypeScript, NestJS, Next.js y React cuando el producto lo requiere.",
+    },
+  ],
   cvUrlEs: "/cv-marcelo-carabajal.pdf",
   cvUrlEn: "/cv-marcelo-carabajal-en.pdf",
 } as const;
+
+/** Email para contacto y botón copiar (alineado con formulario y JSON-LD). */
+export const contactEmail = "marcelocarabajalok@gmail.com" as const;
 
 export const skillGroups = [
   {
@@ -57,8 +77,12 @@ export const projects = [
   {
     name: "Desarrollador Full Stack · Backend & APIs",
     role: "Grupo Hasar — desde 2021",
+    context:
+      "Entorno enterprise en producción: APIs, datos y aplicaciones que conviven con sistemas legacy.",
     summary:
-      "Desarrollo y mantenimiento de soluciones empresariales en entornos legacy y modernos: backend con Java (Quarkus, Spring Boot), C#/.NET Framework y ADO.NET, datos con SQL Server, e interfaces con React, WebForms y WinForms; además de soporte a despliegues con Docker/OpenShift y prácticas de testing.",
+      "Desarrollo y mantenimiento de backends y servicios con Java (Quarkus, Spring Boot) y C#/.NET Framework con ADO.NET; datos en SQL Server; interfaces con React, WebForms y WinForms. Aporte en despliegues con Docker/OpenShift y prácticas de testing (Jest, JUnit, Mockito).",
+    impact:
+      "Enfoque en integraciones estables, evolución incremental del código y soluciones mantenibles en el tiempo.",
     stack: [
       "Java",
       "Quarkus",
@@ -90,8 +114,12 @@ export const projects = [
   {
     name: "Producto web full stack",
     role: "Brillante Pro — Queloco Creativo",
+    context:
+      "Producto digital con énfasis en experiencia de usuario, rendimiento y evolución continua.",
     summary:
-      "Sitio y servicios con React, Spring Boot y Java, priorizando UX responsive, performance y mantenimiento continuo del producto.",
+      "Implementación y soporte del sitio y servicios con React y Spring Boot/Java: vistas responsive, tiempos de carga y mantenimiento operativo del stack.",
+    impact:
+      "Priorizar un producto estable para el usuario final y simple de seguir extendiendo en equipo.",
     stack: ["React", "Spring Boot", "Java", "HTML/CSS"],
     imageSrc: "/art-project-web.svg",
     imageAlt: "Ilustración de interfaz web y ventana de producto",
@@ -99,8 +127,12 @@ export const projects = [
   {
     name: "Acompañamiento educativo React",
     role: "Coderhouse — Tutoría",
+    context:
+      "Aula práctica de frontend: estudiantes construyendo interfaces con React.",
     summary:
-      "Diseño de ejercicios prácticos sobre componentes, hooks y estado. Devolución de código y buenas prácticas para estudiantes de frontend.",
+      "Diseño de ejercicios sobre componentes, hooks y manejo de estado; revisión de entregas con feedback técnico y buenas prácticas de UI.",
+    impact:
+      "Reducir la brecha entre teoría y código real con correcciones accionables.",
     stack: ["React", "Hooks", "Arquitectura UI"],
     imageSrc: "/art-project-teach.svg",
     imageAlt: "Ilustración de código y formación en React",
@@ -116,8 +148,8 @@ export const socialLinks = [
   },
   {
     label: "Email",
-    href: "mailto:marcelocarabajalok@gmail.com",
-    hint: "marcelocarabajalok@gmail.com",
+    href: `mailto:${contactEmail}`,
+    hint: contactEmail,
     iconSrc: "/icons/mail.svg",
   },
   {

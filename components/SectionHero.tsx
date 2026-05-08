@@ -46,7 +46,7 @@ export function SectionHero() {
       aria-labelledby="hero-heading"
       onMouseMove={onSectionMove}
       onMouseLeave={onSectionLeave}
-      className="relative flex min-h-screen scroll-mt-28 items-center justify-center overflow-hidden px-4 pt-28 pb-16 sm:scroll-mt-32 sm:px-6 sm:pt-32 lg:scroll-mt-36 lg:px-8 lg:pt-36"
+      className="relative flex min-h-[100svh] scroll-mt-28 items-center justify-center overflow-hidden px-4 pt-28 pb-16 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:pt-32 lg:scroll-mt-36 lg:px-8 lg:pt-36"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.55]"

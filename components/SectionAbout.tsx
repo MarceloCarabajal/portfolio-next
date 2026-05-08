@@ -6,7 +6,7 @@ export function SectionAbout() {
     <section
       id="sobre-mi"
       aria-labelledby="about-heading"
-      className="flex min-h-screen scroll-mt-24 flex-col justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
+      className="flex min-h-[100svh] scroll-mt-28 flex-col justify-center px-4 py-8 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:py-10 lg:scroll-mt-36 lg:px-8 lg:py-12"
     >
       <div className="mx-auto w-full max-w-6xl text-center">
         <ScrollReveal>
@@ -16,16 +16,25 @@ export function SectionAbout() {
           >
             Información general
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-lg font-medium text-cyan-200/90 [text-shadow:0_0_16px_rgba(45,226,255,0.35)]">
-            Backend, equipos y productos que evolucionan en el tiempo.
+          <p className="mx-auto mt-3 max-w-2xl text-lg font-medium leading-snug text-cyan-200/90 [text-shadow:0_0_16px_rgba(45,226,255,0.35)] sm:text-xl">
+            {about.tagline}
           </p>
         </ScrollReveal>
 
         <div className="mt-12">
           <ScrollReveal delayMs={100}>
             <article className="neon-edge-hover mx-auto max-w-3xl rounded-2xl border border-cyan-500/20 bg-slate-950/45 p-6 shadow-[inset_0_0_28px_rgba(45,226,255,0.06)] backdrop-blur sm:p-8">
-              <p className="text-base leading-relaxed text-slate-300">{about.summary}</p>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <div className="space-y-6 text-left">
+                {about.blocks.map((block) => (
+                  <div key={block.title}>
+                    <h3 className="font-display text-[11px] font-bold uppercase tracking-[0.28em] text-cyan-200 [text-shadow:0_0_12px_rgba(45,226,255,0.45)]">
+                      {block.title}
+                    </h3>
+                    <p className="mt-2 text-base leading-relaxed text-slate-300">{block.body}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <a
                   href={about.cvUrlEs}
                   download
