@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Syne } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/content";
 import "./globals.css";
 
-const fontDisplay = Syne({
+const fontDisplay = Space_Grotesk({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
 const fontBody = Plus_Jakarta_Sans({

@@ -33,9 +33,9 @@ export function SectionContact() {
     <section
       id="contacto"
       aria-labelledby="contact-heading"
-      className="flex min-h-screen scroll-mt-28 flex-col justify-center px-4 py-24 sm:scroll-mt-32 sm:px-6 lg:scroll-mt-36 lg:px-8"
+      className="flex min-h-screen scroll-mt-24 flex-col justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
     >
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto w-full max-w-3xl text-center">
         <ScrollReveal>
           <h2
             id="contact-heading"
@@ -43,7 +43,7 @@ export function SectionContact() {
           >
             Formulario de contacto
           </h2>
-          <p className="mt-3 text-lg text-slate-400">
+          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-400">
             Completá el mensaje y se abrirá tu cliente de correo con el borrador
             listo para enviar.
           </p>
@@ -51,7 +51,7 @@ export function SectionContact() {
         <ScrollReveal className="mt-10" delayMs={90}>
           <form
             onSubmit={onSubmit}
-            className="space-y-6 rounded-2xl border border-cyan-500/25 bg-slate-950/55 p-6 shadow-[0_0_28px_rgba(45,226,255,0.12)] ring-1 ring-fuchsia-500/15 sm:p-8"
+            className="space-y-6 rounded-2xl border border-cyan-500/25 bg-slate-950/55 p-6 text-left shadow-[0_0_28px_rgba(45,226,255,0.12)] ring-1 ring-fuchsia-500/15 sm:p-8"
             noValidate
           >
           <div>

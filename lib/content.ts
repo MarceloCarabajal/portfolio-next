@@ -22,6 +22,8 @@ export const about = {
   visualAlt: "Ilustración abstracta de perfil y sistemas",
   summary:
     "Desarrollador Full Stack con foco en backend y experiencia en productos empresariales. Trabajo en Grupo Hasar construyendo APIs, integraciones y evolución de sistemas con Java, Node/TypeScript, NestJS y Next.js. Complemento esta práctica con formación continua en UTN y experiencia como tutor de React.js.",
+  cvUrlEs: "/cv-marcelo-carabajal.pdf",
+  cvUrlEn: "/cv-marcelo-carabajal-en.pdf",
 } as const;
 
 export const skillsVisual = {
@@ -32,11 +34,11 @@ export const skillsVisual = {
 export const skillGroups = [
   {
     title: "Lenguajes",
-    items: ["Java", "JavaScript", "TypeScript", "SQL", "C#"],
+    items: ["Java", "C#", "JavaScript", "TypeScript", "SQL"],
   },
   {
     title: "Backend",
-    items: ["Quarkus", "Spring Boot", "Node.js", "Express.js", "NestJS", "ASP.NET Framework"],
+    items: ["Quarkus", "Spring Boot", "ASP.NET Framework", "NestJS", "Node.js", "Express.js"],
   },
   {
     title: "Frontend",
@@ -48,21 +50,86 @@ export const skillGroups = [
   },
   {
     title: "Datos",
-    items: ["SQL Server", "MongoDB", "Firebase", "MySQL"],
+    items: ["SQL Server", "MySQL", "MongoDB", "Firebase"],
   },
   {
     title: "DevOps & calidad",
-    items: ["Docker", "OpenShift", "Git", "YAML", "Swagger", "Jest", "JUnit", "Mockito"],
+    items: ["Git", "Docker", "OpenShift", "YAML", "Swagger", "Jest", "JUnit", "Mockito"],
   },
+] as const;
+
+export const skillLogos = [
+  { label: "Java", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
+  { label: "JavaScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+  { label: "TypeScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
+  { label: "SQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg" },
+  { label: "C#", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" },
+
+  { label: "Quarkus", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/quarkus/quarkus-original.svg" },
+  { label: "Spring Boot", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" },
+  { label: "Node.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
+  { label: "Express.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" },
+  { label: "NestJS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" },
+  { label: "ASP.NET Framework", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg" },
+  { label: ".NET Framework", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg" },
+  { label: "ADO.NET", short: "ADO" },
+  { label: "WebForms", short: "WF" },
+  { label: "WinForms", short: "WIN" },
+
+  { label: "React", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+  { label: "Next.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
+  { label: "HTML", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+  { label: "CSS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
+
+  { label: "React Native", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+  { label: "Android Studio (Java)", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" },
+
+  { label: "SQL Server", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original.svg" },
+  { label: "MongoDB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
+  { label: "Firebase", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" },
+  { label: "MySQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+
+  { label: "Docker", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
+  { label: "OpenShift", short: "OCP" },
+  { label: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+  { label: "YAML", short: "YML" },
+  { label: "Swagger", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swagger/swagger-original.svg" },
+  { label: "Jest", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg" },
+  { label: "JUnit", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original.svg" },
+  { label: "Mockito", short: "MCK" },
 ] as const;
 
 export const projects = [
   {
-    name: "Plataformas corporativas y APIs",
+    name: "Desarrollador Full Stack · Backend & APIs",
     role: "Grupo Hasar — desde 2021",
     summary:
-      "Desarrollo web y backend con Java (Quarkus, Spring Boot), Node/TypeScript, NestJS, Next.js y React. Enfoque en reglas de negocio, contratos de API y pruebas en entornos containerizados.",
-    stack: ["Java", "NestJS", "Next.js", "OpenShift", "Docker"],
+      "Desarrollo y mantenimiento de soluciones empresariales en entornos legacy y modernos: backend con Java (Quarkus, Spring Boot), C#/.NET Framework y ADO.NET, datos con SQL Server, e interfaces con React, WebForms y WinForms; además de soporte a despliegues con Docker/OpenShift y prácticas de testing.",
+    stack: [
+      "Java",
+      "Quarkus",
+      "Spring Boot",
+      "SQL Server",
+      "C#",
+      ".NET Framework",
+      "ADO.NET",
+      "WebForms",
+      "WinForms",
+      "NestJS",
+      "Next.js",
+      "React",
+
+      "Git",
+      "YAML",
+      "Swagger",
+      "Jest",
+      "JUnit",
+      "Mockito",
+      "Android Studio (Java)",
+      "React Native",
+      "Docker",
+      "OpenShift",
+    ],
     imageSrc: "/art-project-api.svg",
     imageAlt: "Ilustración de red de APIs y malla de servicios",
   },
@@ -91,16 +158,25 @@ export const socialLinks = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/marcelo-carabajal/",
     hint: "Trayectoria y recomendaciones",
+    iconSrc: "/icons/linkedin.svg",
   },
   {
     label: "Email",
     href: "mailto:marcelocarabajalok@gmail.com",
     hint: "marcelocarabajalok@gmail.com",
+    iconSrc: "/icons/mail.svg",
   },
   {
     label: "WhatsApp / llamadas",
     href: "https://wa.me/5491126347325",
     hint: "+54 11 2634-7325",
+    iconSrc: "/icons/whatsapp.svg",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/MarceloCarabajal",
+    hint: "github.com/MarceloCarabajal",
+    iconSrc: "/icons/github.svg",
   },
 ] as const;
 
