@@ -20,11 +20,8 @@ export const hero = {
 export const about = {
   visualSrc: "/art-about.svg",
   visualAlt: "Ilustración abstracta de perfil y sistemas",
-  paragraphs: [
-    "Soy desarrollador Full Stack con foco en backend y trayectoria en empresas que desafían la escala y la integración entre sistemas. Disfruto diseñar APIs claras, ordenar migraciones y dejar equipos con herramientas que se pueden desplegar con confianza.",
-    "Actualmente en Grupo Hasar — Hasar Sistemas, participo en proyectos con lógica de negocio compleja, integraciones y evolución continua de plataformas. También fui tutor de React.js en Coderhouse, lo que reforzó mi mirada sobre buenas prácticas en frontend y feedback de código.",
-    "Estudio la Tecnicatura Universitaria en Programación en la UTN General Pacheco y complementé mi perfil con la carrera de Full Stack en Coderhouse. Idiomas: español nativo e inglés intermedio.",
-  ],
+  summary:
+    "Desarrollador Full Stack con foco en backend y experiencia en productos empresariales. Trabajo en Grupo Hasar construyendo APIs, integraciones y evolución de sistemas con Java, Node/TypeScript, NestJS y Next.js. Complemento esta práctica con formación continua en UTN y experiencia como tutor de React.js.",
 } as const;
 
 export const skillsVisual = {
