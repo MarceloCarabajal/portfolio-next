@@ -49,11 +49,20 @@ export const metadata: Metadata = {
     siteName: `${site.name} — Portfolio`,
     title: `${site.name} | ${site.title}`,
     description: site.description,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} - Portfolio`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | ${site.title}`,
     description: site.description,
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,
