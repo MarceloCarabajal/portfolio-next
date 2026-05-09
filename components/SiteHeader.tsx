@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navItems } from "@/lib/content";
+import { navItems, site } from "@/lib/content";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -24,13 +23,13 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex min-h-[5.25rem] max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:min-h-[5.75rem] sm:px-6 sm:py-3.5 lg:min-h-24 lg:px-8 lg:py-4">
-        <Link
+        <a
           href="#inicio"
           className="font-display text-base font-bold tracking-tight text-slate-50 [text-shadow:0_0_18px_rgba(45,226,255,0.35)] hover:text-cyan-100 sm:text-lg lg:text-xl"
           onClick={() => setOpen(false)}
         >
-          Marcelo Carabajal
-        </Link>
+          {site.name}
+        </a>
         <nav
           className="hidden items-center gap-0.5 md:flex lg:gap-1 xl:gap-2"
           aria-label="Secciones principales"
