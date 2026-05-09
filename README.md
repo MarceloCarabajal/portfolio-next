@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Marcelo Carabajal Portfolio (Next.js)
 
-## Getting Started
+Personal portfolio built with Next.js App Router, Tailwind CSS v4, and a neon visual style.
+Includes a bilingual UI toggle (ES/EN), sections for professional profile and projects, and a contact form backed by Resend.
 
-First, run the development server:
+## Highlights
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Bilingual interface with persistent `ES | EN` toggle (`localStorage`)
+- Hero section with neon effects and animated floating background
+- Sections: About, Skills, Projects, Social links, Contact
+- Contact API route (`app/api/contact/route.ts`) using Resend
+- Fallback `mailto` behavior when email API is not configured
+- Custom rocket-based FAB (scroll to top) and matching favicon/app icon
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS v4
+- Resend (transactional email)
+
+## Project Structure
+
+```text
+app/
+  api/contact/route.ts      # Contact endpoint (Resend)
+  layout.tsx                # Metadata + global providers
+  page.tsx                  # Main page composition
+components/
+  LanguageProvider.tsx      # i18n state + persistence
+  SiteHeader.tsx            # Header + ES/EN toggle
+  Section*.tsx              # Home sections
+  ScrollToTop.tsx           # Rocket FAB
+lib/
+  i18n/en.ts                # English copy bundle
+  i18n/es.ts                # Spanish copy bundle
+  content.ts                # Shared exports + metadata copy
+public/
+  icons/                    # Social and UI icons
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cp .env.example .env.local
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Required/optional variables:
 
-## Deploy on Vercel
+- `RESEND_API_KEY` (required to send emails through API)
+- `RESEND_FROM` (recommended, verified sender)
+- `CONTACT_TO_EMAIL` (optional destination override)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If `RESEND_API_KEY` is missing, the UI shows fallback guidance and allows `mailto` draft creation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+- `npm run dev` - Start local dev server
+- `npm run build` - Production build check
+- `npm run start` - Serve production build
+- `npm run lint` - Run ESLint
+
+## Deploy (Vercel)
+
+1. Import this folder as a Vercel project.
+2. Add environment variables from `.env.local`.
+3. Deploy.
+
+Recommended:
+
+- Use a verified domain in Resend for production sending.
+- Keep `NEXT_PUBLIC_SITE_URL` configured in Vercel for correct metadata URLs.
+
+## Notes
+
+- UI language defaults to Spanish and can be changed from the header toggle.
+- SEO metadata is currently served from English static metadata (`siteMeta`) for crawler consistency.
