@@ -178,6 +178,12 @@ body {
   border: none;
   background: transparent;
   box-shadow: none;
+  cursor: pointer;
+}
+
+.rocket-fab:active,
+.rocket-fab.rocket-fab--launch {
+  cursor: grabbing;
 }
 
 .rocket-icon {

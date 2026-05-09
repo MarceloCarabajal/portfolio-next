@@ -3,7 +3,7 @@ type Props = {
   alt: string;
   className?: string;
   priority?: boolean;
-  /** En franjas bajas, `cover` evita bandas vacías con SVG anchos */
+  /** In short strips, `cover` avoids empty bands with wide SVGs */
   fit?: "contain" | "cover";
 };
 
@@ -12,8 +12,8 @@ function isVectorSrc(src: string) {
 }
 
 /**
- * SVG: por defecto object-contain + padding para que no se recorten mal.
- * Raster: object-cover. Usá fit="cover" en banners bajos si preferís que llene el alto.
+ * SVG: default object-contain + padding so artwork isn’t cropped awkwardly.
+ * Raster: object-cover. Use fit="cover" on short banners if you want full-height fill.
  */
 export function DecoImage({ src, alt, className = "", priority, fit }: Props) {
   const vector = isVectorSrc(src);

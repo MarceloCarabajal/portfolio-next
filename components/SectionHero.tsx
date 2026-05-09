@@ -2,9 +2,12 @@
 
 import { useCallback, useRef, useState } from "react";
 import { HeroPortrait } from "@/components/HeroPortrait";
-import { hero } from "@/lib/content";
+import { useLocaleBundle } from "@/components/LanguageProvider";
 
 export function SectionHero() {
+  const { t } = useLocaleBundle();
+  const { hero } = t;
+
   const sectionRef = useRef<HTMLElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
   const [gridShift, setGridShift] = useState({ x: 0, y: 0 });
@@ -42,7 +45,7 @@ export function SectionHero() {
   return (
     <section
       ref={sectionRef}
-      id="inicio"
+      id="home"
       aria-labelledby="hero-heading"
       onMouseMove={onSectionMove}
       onMouseLeave={onSectionLeave}
@@ -99,16 +102,16 @@ export function SectionHero() {
 
             <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a
-                href="#proyectos"
+                href="#projects"
                 className="btn-neon-primary inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition hover:scale-[1.02]"
               >
-                Ver proyectos
+                {t.ui.viewProjects}
               </a>
               <a
-                href="#contacto"
+                href="#contact"
                 className="btn-neon-ghost inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-bold text-slate-100 transition hover:scale-[1.02] hover:text-cyan-100"
               >
-                Contactar
+                {t.ui.contactCta}
               </a>
             </div>
           </div>

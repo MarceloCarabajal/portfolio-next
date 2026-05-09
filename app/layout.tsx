@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { AppProviders } from "@/components/AppProviders";
 import { JsonLd } from "@/components/JsonLd";
-import { site } from "@/lib/content";
+import { siteMeta } from "@/lib/content";
 import "./globals.css";
 
 const fontDisplay = Space_Grotesk({
@@ -21,11 +22,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.name} | ${site.title}`,
-    template: `%s | ${site.name}`,
+    default: `${siteMeta.name} | ${siteMeta.title}`,
+    template: `%s | ${siteMeta.name}`,
   },
-  description: site.description,
+  description: siteMeta.description,
   keywords: [
+    "Full Stack Developer",
     "Desarrollador Full Stack",
     "Backend",
     "Java",
@@ -38,22 +40,22 @@ export const metadata: Metadata = {
     "C#",
     "APIs",
     "Argentina",
-    "UTN",
+    "UTN FRGP",
   ],
-  authors: [{ name: site.name, url: siteUrl }],
-  creator: site.name,
+  authors: [{ name: siteMeta.name, url: siteUrl }],
+  creator: siteMeta.name,
   openGraph: {
     type: "website",
-    locale: "es_AR",
+    locale: "en_US",
     url: siteUrl,
-    siteName: `${site.name} — Portfolio`,
-    title: `${site.name} | ${site.title}`,
-    description: site.description,
+    siteName: `${siteMeta.name} — Portfolio`,
+    title: `${siteMeta.name} | ${siteMeta.title}`,
+    description: siteMeta.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | ${site.title}`,
-    description: site.description,
+    title: `${siteMeta.name} | ${siteMeta.title}`,
+    description: siteMeta.description,
   },
   robots: {
     index: true,
@@ -72,11 +74,14 @@ export default function RootLayout({
   return (
     <html
       lang="es"
+      suppressHydrationWarning
       className={`${fontDisplay.variable} ${fontBody.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full bg-slate-950 font-body text-slate-100 cosmic-bg">
-        <JsonLd />
-        {children}
+        <AppProviders>
+          <JsonLd />
+          {children}
+        </AppProviders>
       </body>
     </html>
   );

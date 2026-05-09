@@ -1,4 +1,4 @@
-import { contactEmail, site } from "@/lib/content";
+import { contactEmail, siteMeta } from "@/lib/content";
 
 function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -8,10 +8,10 @@ export function JsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: site.name,
-    jobTitle: site.title,
+    name: siteMeta.name,
+    jobTitle: siteMeta.title,
     url: siteUrl(),
-    description: site.description,
+    description: siteMeta.description,
     email: contactEmail,
     telephone: "+54-11-2634-7325",
     sameAs: ["https://www.linkedin.com/in/marcelo-carabajal/"],

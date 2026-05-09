@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { useLocaleBundle } from "@/components/LanguageProvider";
 import { contactEmail } from "@/lib/content";
 
 function openMailto(href: string) {
@@ -23,6 +24,9 @@ type SubmitStatus =
   | "not_configured";
 
 export function SectionContact() {
+  const { t } = useLocaleBundle();
+  const { ui } = t;
+
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const [copyHint, setCopyHint] = useState<"idle" | "ok" | "fail">("idle");
 
@@ -30,11 +34,11 @@ export function SectionContact() {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const nombre = String(data.get("nombre") ?? "").trim();
+    const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
-    const mensaje = String(data.get("mensaje") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
 
-    if (!nombre || !email || !mensaje) {
+    if (!name || !email || !message) {
       setSubmitStatus("validation_error");
       return;
     }
@@ -44,7 +48,7 @@ export function SectionContact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, email, mensaje }),
+        body: JSON.stringify({ name, email, message }),
       });
 
       const payload = (await res.json().catch(() => ({}))) as {
@@ -81,15 +85,17 @@ export function SectionContact() {
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
     if (!form) return;
     const data = new FormData(form);
-    const nombre = String(data.get("nombre") ?? "").trim();
+    const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
-    const mensaje = String(data.get("mensaje") ?? "").trim();
-    if (!nombre || !email || !mensaje) {
+    const message = String(data.get("message") ?? "").trim();
+    if (!name || !email || !message) {
       setSubmitStatus("validation_error");
       return;
     }
-    const subject = encodeURIComponent(`Contacto portfolio — ${nombre}`);
-    const body = encodeURIComponent(`Nombre: ${nombre}\nEmail: ${email}\n\n${mensaje}`);
+    const subject = encodeURIComponent(`${ui.mailtoSubjectPrefix} ${name}`);
+    const body = encodeURIComponent(
+      `${ui.mailtoBodyName}: ${name}\n${ui.mailtoBodyEmail}: ${email}\n\n${ui.mailtoBodyMessage}:\n${message}`,
+    );
     openMailto(`mailto:${contactEmail}?subject=${subject}&body=${body}`);
   }
 
@@ -106,7 +112,7 @@ export function SectionContact() {
 
   return (
     <section
-      id="contacto"
+      id="contact"
       aria-labelledby="contact-heading"
       className="flex min-h-[100svh] scroll-mt-28 flex-col justify-center px-4 py-8 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:py-10 lg:scroll-mt-36 lg:px-8 lg:py-12"
     >
@@ -116,36 +122,33 @@ export function SectionContact() {
             id="contact-heading"
             className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl title-neon"
           >
-            Formulario de contacto
+            {ui.contactHeading}
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-400">
-            Al enviar, recibo el mensaje en mi correo y puedo responderte usando la dirección que
-            pongas en el campo Email.
-          </p>
+          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-400">{ui.contactIntro}</p>
           <div className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
             <a
               href={`mailto:${contactEmail}`}
               className="btn-neon-ghost inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:text-cyan-100"
             >
-              Abrir mailto
+              {ui.openMailClient}
             </a>
             <button
               type="button"
               onClick={() => void onCopyEmail()}
               className="btn-neon-ghost inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:text-cyan-100"
             >
-              Copiar email
+              {ui.copyEmail}
             </button>
             <span className="text-sm text-slate-500">{contactEmail}</span>
           </div>
           {copyHint === "ok" ? (
             <p className="mt-2 text-sm text-emerald-400" role="status">
-              Email copiado al portapapeles.
+              {ui.copiedOk}
             </p>
           ) : null}
           {copyHint === "fail" ? (
             <p className="mt-2 text-sm text-amber-400/95" role="status">
-              No se pudo copiar automáticamente; seleccioná el correo arriba o usá{" "}
+              {ui.copiedFailPrefix}{" "}
               <span className="font-medium text-slate-300">{contactEmail}</span>.
             </p>
           ) : null}
@@ -158,12 +161,12 @@ export function SectionContact() {
             noValidate
           >
             <div>
-              <label htmlFor="nombre" className="block text-sm font-medium text-slate-200">
-                Nombre
+              <label htmlFor="name" className="block text-sm font-medium text-slate-200">
+                {ui.labelName}
               </label>
               <input
-                id="nombre"
-                name="nombre"
+                id="name"
+                name="name"
                 type="text"
                 autoComplete="name"
                 required
@@ -173,7 +176,7 @@ export function SectionContact() {
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-slate-200">
-                Email
+                {ui.labelEmail}
               </label>
               <input
                 id="email"
@@ -186,12 +189,12 @@ export function SectionContact() {
               />
             </div>
             <div>
-              <label htmlFor="mensaje" className="block text-sm font-medium text-slate-200">
-                Mensaje
+              <label htmlFor="message" className="block text-sm font-medium text-slate-200">
+                {ui.labelMessage}
               </label>
               <textarea
-                id="mensaje"
-                name="mensaje"
+                id="message"
+                name="message"
                 rows={5}
                 required
                 disabled={submitStatus === "loading"}
@@ -200,17 +203,17 @@ export function SectionContact() {
             </div>
             {submitStatus === "validation_error" ? (
               <p className="text-sm text-rose-400" role="alert">
-                Revisá que todos los campos tengan contenido válido.
+                {ui.validationError}
               </p>
             ) : null}
             {submitStatus === "success" ? (
               <p className="text-sm text-emerald-400/95" role="status">
-                Mensaje enviado. Te voy a responder al correo que indicaste.
+                {ui.successMessage}
               </p>
             ) : null}
             {submitStatus === "request_error" ? (
               <p className="text-sm text-rose-400/95" role="alert">
-                No se pudo enviar ahora. Probá de nuevo en unos minutos o escribime a{" "}
+                {ui.requestErrorPrefix}{" "}
                 <a className="underline" href={`mailto:${contactEmail}`}>
                   {contactEmail}
                 </a>
@@ -222,22 +225,15 @@ export function SectionContact() {
                 className="rounded-xl border border-amber-500/25 bg-amber-500/5 p-4 text-left text-sm text-amber-100/95"
                 role="alert"
               >
-                <p className="font-medium text-amber-50">
-                  Resend está en modo prueba con{" "}
-                  <code className="text-amber-200">onboarding@resend.dev</code>: solo deja enviar
-                  notificaciones al correo con el que creaste la cuenta en Resend (no a cualquier{" "}
-                  <code className="text-amber-200">CONTACT_TO_EMAIL</code>).
-                </p>
+                <p className="font-medium text-amber-50">{ui.resendSandboxLead}</p>
                 <ul className="mt-3 list-disc space-y-2 pl-5 text-amber-100/90">
                   <li>
-                    <strong className="text-amber-50">Para probar ya:</strong> en{" "}
-                    <code className="text-amber-200">.env.local</code> poné{" "}
-                    <code className="text-amber-200">CONTACT_TO_EMAIL</code> igual al email de tu
-                    cuenta Resend.
+                    <strong className="text-amber-50">{ui.resendSandboxTryTitle}</strong>{" "}
+                    {ui.resendSandboxTryBody}
                   </li>
                   <li>
-                    <strong className="text-amber-50">Para producción:</strong> verificá un dominio
-                    en{" "}
+                    <strong className="text-amber-50">{ui.resendSandboxProdTitle}</strong>{" "}
+                    {ui.resendSandboxProdBodyPrefix}{" "}
                     <a
                       className="underline decoration-amber-400/60 underline-offset-2 hover:text-amber-50"
                       href="https://resend.com/domains"
@@ -246,9 +242,9 @@ export function SectionContact() {
                     >
                       resend.com/domains
                     </a>{" "}
-                    y usá un <code className="text-amber-200">RESEND_FROM</code> de ese dominio;
-                    después sí podés recibir en{" "}
-                    <code className="text-amber-200">{contactEmail}</code> u otra bandeja.
+                    {ui.resendSandboxProdBodyMid}{" "}
+                    <code className="text-amber-200">{contactEmail}</code>{" "}
+                    {ui.resendSandboxProdBodySuffix}
                   </li>
                 </ul>
               </div>
@@ -256,16 +252,15 @@ export function SectionContact() {
             {submitStatus === "not_configured" ? (
               <div className="rounded-xl border border-amber-500/25 bg-amber-500/5 p-4 text-sm text-amber-100/95">
                 <p>
-                  En este entorno falta configurar <code className="text-amber-200">RESEND_API_KEY</code>{" "}
-                  (por ejemplo en <code className="text-amber-200">.env.local</code>). Mirá{" "}
-                  <code className="text-amber-200">.env.example</code> en el proyecto.
+                  {ui.notConfiguredLeadPrefix}{" "}
+                  <code className="text-amber-200">.env.example</code> {ui.notConfiguredLeadSuffix}
                 </p>
                 <button
                   type="button"
                   onClick={onMailtoFallback}
                   className="btn-neon-ghost mt-3 inline-flex items-center justify-center rounded-xl px-4 py-2 text-xs font-semibold text-slate-100"
                 >
-                  Abrir borrador en mi correo (alternativa)
+                  {ui.mailtoFallbackButton}
                 </button>
               </div>
             ) : null}
@@ -274,7 +269,7 @@ export function SectionContact() {
               disabled={submitStatus === "loading"}
               className="inline-flex w-full items-center justify-center rounded-xl btn-neon-primary px-5 py-3 text-sm font-bold transition hover:scale-[1.02] disabled:pointer-events-none disabled:opacity-55 sm:w-auto"
             >
-              {submitStatus === "loading" ? "Enviando…" : "Enviar mensaje"}
+              {submitStatus === "loading" ? ui.submitSending : ui.submitSend}
             </button>
           </form>
         </ScrollReveal>

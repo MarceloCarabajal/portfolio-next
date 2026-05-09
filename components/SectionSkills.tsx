@@ -1,5 +1,7 @@
+"use client";
+
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { skillGroups } from "@/lib/content";
+import { useLocaleBundle } from "@/components/LanguageProvider";
 
 const techLogoMap: Record<string, string> = {
   Java: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
@@ -63,9 +65,11 @@ function logoForTech(item: string) {
 }
 
 export function SectionSkills() {
+  const { t } = useLocaleBundle();
+
   return (
     <section
-      id="conocimientos"
+      id="skills"
       aria-labelledby="skills-heading"
       className="flex min-h-[100svh] scroll-mt-28 flex-col justify-center px-4 py-8 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:py-10 lg:scroll-mt-36 lg:px-8 lg:py-12"
     >
@@ -75,15 +79,15 @@ export function SectionSkills() {
             id="skills-heading"
             className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl title-neon"
           >
-            Conocimientos
+            {t.ui.skillsSectionTitle}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-lg font-medium text-fuchsia-200/85 [text-shadow:0_0_14px_rgba(255,75,213,0.28)]">
-            Stack que uso en producción y en proyectos académicos.
+            {t.ui.skillsSectionLead}
           </p>
         </ScrollReveal>
 
         <ul className="mt-6 grid gap-3 text-left sm:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((group, i) => (
+          {t.skillGroups.map((group, i) => (
             <li key={group.title}>
               <ScrollReveal delayMs={80 + i * 50}>
                 <div className="neon-edge-hover h-full rounded-2xl border border-violet-500/20 bg-slate-950/55 p-4 shadow-[inset_0_0_24px_rgba(180,107,255,0.07)] transition hover:border-cyan-400/35">

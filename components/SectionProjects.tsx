@@ -1,10 +1,14 @@
+"use client";
+
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { projects } from "@/lib/content";
+import { useLocaleBundle } from "@/components/LanguageProvider";
 
 export function SectionProjects() {
+  const { t } = useLocaleBundle();
+
   return (
     <section
-      id="proyectos"
+      id="projects"
       aria-labelledby="projects-heading"
       className="flex min-h-[100svh] scroll-mt-28 flex-col justify-center px-4 py-8 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:py-10 lg:scroll-mt-36 lg:px-8 lg:py-12"
     >
@@ -14,14 +18,14 @@ export function SectionProjects() {
             id="projects-heading"
             className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl title-neon"
           >
-            Proyectos y experiencia
+            {t.ui.projectsSectionTitle}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-lg font-medium text-cyan-200/90 [text-shadow:0_0_16px_rgba(45,226,255,0.3)]">
-            Un vistazo a los contextos donde más aporté valor técnico.
+            {t.ui.projectsSectionLead}
           </p>
         </ScrollReveal>
         <ul className="mt-8 grid gap-6 text-left lg:grid-cols-3">
-          {projects.map((project, i) => (
+          {t.projects.map((project, i) => (
             <li key={project.name}>
               <ScrollReveal delayMs={70 + i * 80}>
                 <article className="group neon-edge-hover flex h-full flex-col overflow-hidden rounded-2xl border border-fuchsia-500/15 bg-linear-to-b from-slate-950/95 to-slate-950/80 shadow-[0_0_36px_rgba(180,107,255,0.08)] transition hover:border-cyan-400/30">
@@ -39,18 +43,18 @@ export function SectionProjects() {
                     <p className="mt-3 border-l-2 border-fuchsia-500/35 pl-3 text-sm leading-snug text-violet-200/90">
                       {project.impact}
                     </p>
-                    <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías">
-                      {project.stack.slice(0, 12).map((t) => (
-                        <li key={t}>
+                    <ul className="mt-4 flex flex-wrap gap-2" aria-label={t.ui.projectsTechAria}>
+                      {project.stack.slice(0, 12).map((tech) => (
+                        <li key={tech}>
                           <span className="inline-flex rounded-md border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 text-xs font-medium text-cyan-100 shadow-[0_0_10px_rgba(45,226,255,0.2)]">
-                            {t}
+                            {tech}
                           </span>
                         </li>
                       ))}
                       {project.stack.length > 12 ? (
                         <li>
                           <span className="inline-flex rounded-md border border-fuchsia-500/25 bg-fuchsia-500/10 px-2 py-1 text-xs font-semibold text-fuchsia-100 shadow-[0_0_10px_rgba(255,75,213,0.18)]">
-                            +{project.stack.length - 12} más
+                            +{project.stack.length - 12} {t.ui.projectsMoreSuffix}
                           </span>
                         </li>
                       ) : null}

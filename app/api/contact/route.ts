@@ -4,7 +4,7 @@ import { contactEmail } from "@/lib/content";
 
 export const runtime = "nodejs";
 
-const LIMITS = { nombre: 120, mensaje: 8000 } as const;
+const LIMITS = { name: 120, message: 8000 } as const;
 
 function isValidEmail(s: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
@@ -29,18 +29,18 @@ export async function POST(req: Request) {
   }
 
   const body = raw as Record<string, unknown>;
-  const nombre = typeof body.nombre === "string" ? body.nombre.trim() : "";
+  const name = typeof body.name === "string" ? body.name.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
-  const mensaje = typeof body.mensaje === "string" ? body.mensaje.trim() : "";
+  const message = typeof body.message === "string" ? body.message.trim() : "";
 
-  if (!nombre || nombre.length > LIMITS.nombre) {
-    return NextResponse.json({ error: "validation", field: "nombre" }, { status: 400 });
+  if (!name || name.length > LIMITS.name) {
+    return NextResponse.json({ error: "validation", field: "name" }, { status: 400 });
   }
   if (!email || email.length > 254 || !isValidEmail(email)) {
     return NextResponse.json({ error: "validation", field: "email" }, { status: 400 });
   }
-  if (!mensaje || mensaje.length > LIMITS.mensaje) {
-    return NextResponse.json({ error: "validation", field: "mensaje" }, { status: 400 });
+  if (!message || message.length > LIMITS.message) {
+    return NextResponse.json({ error: "validation", field: "message" }, { status: 400 });
   }
 
   const resend = new Resend(apiKey);
@@ -48,8 +48,8 @@ export async function POST(req: Request) {
     from,
     to: [to],
     replyTo: email,
-    subject: `Contacto portfolio — ${nombre}`,
-    text: `Nombre: ${nombre}\nEmail: ${email}\n\n${mensaje}`,
+    subject: `Portfolio contact — ${name}`,
+    text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
   });
 
   if (result.error) {

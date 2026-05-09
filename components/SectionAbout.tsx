@@ -1,10 +1,15 @@
+"use client";
+
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { about } from "@/lib/content";
+import { useLocaleBundle } from "@/components/LanguageProvider";
 
 export function SectionAbout() {
+  const { t } = useLocaleBundle();
+  const { about } = t;
+
   return (
     <section
-      id="sobre-mi"
+      id="about"
       aria-labelledby="about-heading"
       className="flex min-h-[100svh] scroll-mt-28 flex-col justify-center px-4 py-8 sm:min-h-screen sm:scroll-mt-32 sm:px-6 sm:py-10 lg:scroll-mt-36 lg:px-8 lg:py-12"
     >
@@ -14,7 +19,7 @@ export function SectionAbout() {
             id="about-heading"
             className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl title-neon"
           >
-            Información general
+            {t.ui.aboutSectionTitle}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-lg font-medium leading-snug text-cyan-200/90 [text-shadow:0_0_16px_rgba(45,226,255,0.35)] sm:text-xl">
             {about.tagline}
@@ -40,14 +45,14 @@ export function SectionAbout() {
                   download
                   className="btn-neon-primary inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold"
                 >
-                  CV Español
+                  {t.ui.cvSpanish}
                 </a>
                 <a
                   href={about.cvUrlEn}
                   download
                   className="btn-neon-primary inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold"
                 >
-                  CV English
+                  {t.ui.cvEnglish}
                 </a>
               </div>
             </article>
