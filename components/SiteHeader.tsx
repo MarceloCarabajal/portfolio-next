@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocaleBundle } from "@/components/LanguageProvider";
 import type { Locale } from "@/lib/i18n";
 
@@ -42,6 +42,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t } = useLocaleBundle();
+  const menuBtnRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -49,6 +50,17 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  /** Close mobile drawer on page scroll — common pattern so the menu does not stay “stuck open”. */
+  useEffect(() => {
+    if (!open) return;
+    const closeMenu = () => {
+      setOpen(false);
+      menuBtnRef.current?.blur();
+    };
+    window.addEventListener("scroll", closeMenu, { passive: true });
+    return () => window.removeEventListener("scroll", closeMenu);
+  }, [open]);
 
   return (
     <header
@@ -86,8 +98,9 @@ export function SiteHeader() {
             ))}
           </nav>
           <button
+            ref={menuBtnRef}
             type="button"
-            className="inline-flex min-h-12 min-w-[5.5rem] shrink-0 items-center justify-center rounded-xl border border-cyan-500/35 bg-slate-950/40 px-4 py-3 text-base font-semibold text-cyan-100 shadow-[0_0_14px_rgba(45,226,255,0.15)] md:hidden"
+            className="inline-flex min-h-12 min-w-[5.5rem] shrink-0 touch-manipulation items-center justify-center rounded-xl border border-cyan-500/35 bg-slate-950/40 px-4 py-3 text-base font-semibold text-cyan-100 shadow-[0_0_14px_rgba(45,226,255,0.15)] md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
