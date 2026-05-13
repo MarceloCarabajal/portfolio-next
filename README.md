@@ -38,6 +38,7 @@ lib/
   content.ts                # Shared exports + metadata copy
 public/
   icons/                    # Social and UI icons
+  og.png                    # Open Graph / WhatsApp preview (1200×630); reemplazable
 ```
 
 ## Favicon (y preview en redes, si la querés)
@@ -51,7 +52,7 @@ Para **generar** favicons en PNG / ICO a partir de una imagen o texto:
 
 Si descargás un **`favicon.ico`**, podés ponerlo en **`app/favicon.ico`** (Next lo detecta). Si preferís PNG, **`app/icon.png`** también funciona; podés quitar o dejar el SVG según prioridad de Next.
 
-**Nota:** WhatsApp y otras apps suelen **no usar el favicon** como miniatura del link; para eso haría falta un **`og:image`** en PNG (archivo estático en `public/`, por ejemplo `og.png`, y una línea en `metadata.openGraph.images`). Sin eso, igual se ven título y descripción. No sumamos código extra en el repo para eso.
+**Nota:** WhatsApp no usa el `favicon.ico` de la pestaña; usa **`og:image`**. En este repo hay **`public/og.png`** (1200×630) y en `layout.tsx` está declarado en `openGraph.images` / `twitter.images`. Podés reemplazar ese PNG por uno con el cohete (Canva/Figma) sin tocar código. Después de cambiarlo, refrescá la caché con el [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/).
 
 ## Local Development
 
