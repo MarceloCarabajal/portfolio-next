@@ -10,7 +10,7 @@ Includes a bilingual UI toggle (ES/EN), sections for professional profile and pr
 - Sections: About, Skills, Projects, Social links, Contact
 - Contact API route (`app/api/contact/route.ts`) using Resend
 - Fallback `mailto` behavior when email API is not configured
-- Custom rocket-based FAB (scroll to top) and matching favicon/app icon
+- Custom rocket-based FAB (scroll to top); favicon and link previews both use **`/icon.svg`** (see `app/icon.svg` + `openGraph` / `twitter` images in `layout.tsx`)
 
 ## Tech Stack
 
@@ -24,8 +24,9 @@ Includes a bilingual UI toggle (ES/EN), sections for professional profile and pr
 ```text
 app/
   api/contact/route.ts      # Contact endpoint (Resend)
-  layout.tsx                # Metadata + global providers
+  layout.tsx                # Metadata (OG/Twitter image → rocket SVG) + providers
   page.tsx                  # Main page composition
+  icon.svg / apple-icon.svg # Favicon (rocket)
 components/
   LanguageProvider.tsx      # i18n state + persistence
   SiteHeader.tsx            # Header + ES/EN toggle
@@ -38,6 +39,10 @@ lib/
 public/
   icons/                    # Social and UI icons
 ```
+
+## Link preview (WhatsApp, Telegram, etc.)
+
+`layout.tsx` sets `openGraph.images` and `twitter.images` to **`/icon.svg`** (same asset as the favicon, no generated image routes). Previews can stay cached; some apps prefer PNG for large cards—if needed, add a static `public/og.png` and point metadata there later.
 
 ## Local Development
 
