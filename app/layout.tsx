@@ -51,20 +51,12 @@ export const metadata: Metadata = {
     siteName: `${siteMeta.name} — Portfolio`,
     title: `${siteMeta.name} | ${siteMeta.title}`,
     description: siteMeta.description,
-    images: [
-      {
-        url: "/icon.svg",
-        width: 64,
-        height: 64,
-        alt: `${siteMeta.name} — portfolio`,
-      },
-    ],
+    // og:image: use app/opengraph-image.tsx (PNG) — WhatsApp does not show SVG previews reliably.
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteMeta.name} | ${siteMeta.title}`,
     description: siteMeta.description,
-    images: ["/icon.svg"],
   },
   robots: {
     index: true,
