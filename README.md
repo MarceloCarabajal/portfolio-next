@@ -10,7 +10,7 @@ Includes a bilingual UI toggle (ES/EN), sections for professional profile and pr
 - Sections: About, Skills, Projects, Social links, Contact
 - Contact API route (`app/api/contact/route.ts`) using Resend
 - Fallback `mailto` behavior when email API is not configured
-- Custom rocket-based FAB (scroll to top); favicon in `app/icon.svg` (see README to generate PNG/ICO if you want)
+- Custom rocket FAB (scroll to top); tab icon `app/icon.svg`; social preview `public/og.png` (see README)
 
 ## Tech Stack
 
@@ -38,21 +38,16 @@ lib/
   content.ts                # Shared exports + metadata copy
 public/
   icons/                    # Social and UI icons
-  og.png                    # Open Graph / WhatsApp preview (1200×630); reemplazable
+  og.png                    # 1200×630 — WhatsApp / redes (reemplazá el archivo, sin tocar código)
 ```
 
-## Favicon (y preview en redes, si la querés)
+## Favicon y vista previa (WhatsApp)
 
-El proyecto usa **`app/icon.svg`** (cohete). Next lo sirve como favicon en la pestaña del navegador.
+1. **Pestaña del navegador:** `app/icon.svg` (y `apple-icon.svg`). Next los sirve solo.
+2. **WhatsApp / redes:** no leen el favicon; leen **`public/og.png`** (1200×630). Exportá tu imagen con el cohete, sobrescribí ese archivo y listo. Tras subir cambios, refrescá caché con el [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/).
+3. **URL del deploy:** en Vercel, configurá `NEXT_PUBLIC_SITE_URL` con tu dominio final; si no está, el código usa `VERCEL_URL` para que el enlace de preview y la imagen coincidan.
 
-Para **generar** favicons en PNG / ICO a partir de una imagen o texto:
-
-- [favicon.io](https://favicon.io/) — muy simple: texto, emoji o subís una imagen y descargás el pack.
-- [RealFaviconGenerator](https://realfavicongenerator.net/) — más completo (Android, Safari, etc.).
-
-Si descargás un **`favicon.ico`**, podés ponerlo en **`app/favicon.ico`** (Next lo detecta). Si preferís PNG, **`app/icon.png`** también funciona; podés quitar o dejar el SVG según prioridad de Next.
-
-**Nota:** WhatsApp no usa el `favicon.ico` de la pestaña; usa **`og:image`**. En este repo hay **`public/og.png`** (1200×630) y en `layout.tsx` está declarado en `openGraph.images` / `twitter.images`. Podés reemplazar ese PNG por uno con el cohete (Canva/Figma) sin tocar código. Después de cambiarlo, refrescá la caché con el [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/).
+Si querés también **`favicon.ico`**, generalo en [favicon.io](https://favicon.io/) a partir de una captura o PNG y colocá `app/favicon.ico` (Next lo detecta; en muchos navegadores tiene prioridad sobre el SVG).
 
 ## Local Development
 
@@ -95,7 +90,7 @@ If `RESEND_API_KEY` is missing, the UI shows fallback guidance and allows `mailt
 Recommended:
 
 - Use a verified domain in Resend for production sending.
-- Set `NEXT_PUBLIC_SITE_URL` to your **canonical** production URL (for example `https://tu-dominio.com`). If it is unset, the app uses Vercel’s `VERCEL_URL` so preview deployments resolve `og:image` to the same host you share (avoids pointing WhatsApp at another deployment’s `og.png`).
+- Set `NEXT_PUBLIC_SITE_URL` to your production domain in Vercel. If unset, `VERCEL_URL` is used so metadata matches preview URLs.
 
 ## Notes
 

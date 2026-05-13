@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import { AppProviders } from "@/components/AppProviders";
 import { JsonLd } from "@/components/JsonLd";
-import { siteMeta } from "@/lib/content";
-import { getSiteUrl } from "@/lib/site-url";
+import { getSiteUrl, siteMeta } from "@/lib/content";
 import "./globals.css";
 
 const fontDisplay = Space_Grotesk({

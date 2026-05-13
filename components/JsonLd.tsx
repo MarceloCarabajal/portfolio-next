@@ -1,5 +1,4 @@
-import { contactEmail, siteMeta } from "@/lib/content";
-import { getSiteUrl } from "@/lib/site-url";
+import { contactEmail, getSiteUrl, siteMeta } from "@/lib/content";
 
 export function JsonLd() {
   const data = {
