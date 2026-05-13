@@ -10,7 +10,7 @@ Includes a bilingual UI toggle (ES/EN), sections for professional profile and pr
 - Sections: About, Skills, Projects, Social links, Contact
 - Contact API route (`app/api/contact/route.ts`) using Resend
 - Fallback `mailto` behavior when email API is not configured
-- Custom rocket-based FAB (scroll to top); favicon `app/icon.svg`; **link previews** use generated **PNG** (`app/opengraph-image.tsx`) because WhatsApp/Telegram need raster images, not SVG.
+- Custom rocket-based FAB (scroll to top); favicon in `app/icon.svg` (see README to generate PNG/ICO if you want)
 
 ## Tech Stack
 
@@ -26,8 +26,6 @@ app/
   api/contact/route.ts      # Contact endpoint (Resend)
   layout.tsx                # Metadata + global providers
   page.tsx                  # Main page composition
-  opengraph-image.tsx       # OG preview PNG (1200×630, rocket + title)
-  twitter-image.tsx         # Twitter card (same as OG)
   icon.svg / apple-icon.svg # Favicon (rocket)
 components/
   LanguageProvider.tsx      # i18n state + persistence
@@ -38,14 +36,22 @@ lib/
   i18n/en.ts                # English copy bundle
   i18n/es.ts                # Spanish copy bundle
   content.ts                # Shared exports + metadata copy
-  og-image-response.tsx     # Shared ImageResponse for OG + Twitter PNG
 public/
   icons/                    # Social and UI icons
 ```
 
-## Link preview (WhatsApp, Telegram)
+## Favicon (y preview en redes, si la querés)
 
-Previews use **`/opengraph-image`** (PNG). SVG (`/icon.svg`) is fine in the browser tab but **many chat apps ignore SVG for `og:image`**, so the image looked blank. After deploy, refresh cache with the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) if needed.
+El proyecto usa **`app/icon.svg`** (cohete). Next lo sirve como favicon en la pestaña del navegador.
+
+Para **generar** favicons en PNG / ICO a partir de una imagen o texto:
+
+- [favicon.io](https://favicon.io/) — muy simple: texto, emoji o subís una imagen y descargás el pack.
+- [RealFaviconGenerator](https://realfavicongenerator.net/) — más completo (Android, Safari, etc.).
+
+Si descargás un **`favicon.ico`**, podés ponerlo en **`app/favicon.ico`** (Next lo detecta). Si preferís PNG, **`app/icon.png`** también funciona; podés quitar o dejar el SVG según prioridad de Next.
+
+**Nota:** WhatsApp y otras apps suelen **no usar el favicon** como miniatura del link; para eso haría falta un **`og:image`** en PNG (archivo estático en `public/`, por ejemplo `og.png`, y una línea en `metadata.openGraph.images`). Sin eso, igual se ven título y descripción. No sumamos código extra en el repo para eso.
 
 ## Local Development
 
