@@ -1,8 +1,5 @@
 import { contactEmail, siteMeta } from "@/lib/content";
-
-function siteUrl() {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-}
+import { getSiteUrl } from "@/lib/site-url";
 
 export function JsonLd() {
   const data = {
@@ -10,7 +7,7 @@ export function JsonLd() {
     "@type": "Person",
     name: siteMeta.name,
     jobTitle: siteMeta.title,
-    url: siteUrl(),
+    url: getSiteUrl(),
     description: siteMeta.description,
     email: contactEmail,
     telephone: "+54-11-2634-7325",

@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import { AppProviders } from "@/components/AppProviders";
 import { JsonLd } from "@/components/JsonLd";
 import { siteMeta } from "@/lib/content";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const fontDisplay = Space_Grotesk({
@@ -17,7 +18,7 @@ const fontBody = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

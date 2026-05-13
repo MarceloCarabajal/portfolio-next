@@ -95,7 +95,7 @@ If `RESEND_API_KEY` is missing, the UI shows fallback guidance and allows `mailt
 Recommended:
 
 - Use a verified domain in Resend for production sending.
-- Keep `NEXT_PUBLIC_SITE_URL` configured in Vercel for correct metadata URLs.
+- Set `NEXT_PUBLIC_SITE_URL` to your **canonical** production URL (for example `https://tu-dominio.com`). If it is unset, the app uses Vercel’s `VERCEL_URL` so preview deployments resolve `og:image` to the same host you share (avoids pointing WhatsApp at another deployment’s `og.png`).
 
 ## Notes
 
